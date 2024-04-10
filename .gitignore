@@ -1,0 +1,4 @@
+/.vscode
+/main.exe
+/zig-cache
+/zig-out
