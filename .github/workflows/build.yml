@@ -12,6 +12,12 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
+    - name: Setup MSYS2
+      uses: mattn/setup-msys2@v2
+      with:
+        msystem: MSYS
+        install: gcc mingw-w64-x86_64-gcc mingw-w64-x86_64-winpthreads-git mingw-w64-x86_64-tools-git
+
     - name: Run build script
       run: .\build.bat
 
