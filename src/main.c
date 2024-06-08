@@ -3,7 +3,7 @@
 #include "string.h"
 
 #define SB_IMPLEMENTATION
-#include "sb.h"
+#include "..\sb\sb.h"
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
 {
