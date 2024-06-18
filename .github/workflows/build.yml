@@ -25,11 +25,15 @@ jobs:
     - name: Run build script
       run: ./build.sh
 
-    - run:   |
-         upload_url=$(curl -sL https://api.github.com/repos/actions/checkout/releases/latest | jq -r '.upload_url')
-         echo UPLOAD_URL=$upload_url >> $GITHUB_ENV
-      shell: bash
-        
+    - name: Fetch Latest Release Upload URL
+      id: get_upload_url
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        upload_url=$(curl -sSL -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/{owner}/{repo}/releases/latest | jq -r .upload_url)
+        echo "UPLOAD_URL=$upload_url" >> $GITHUB_ENV
+        echo "Upload URL fetched: $upload_url"
+  
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
       with:
