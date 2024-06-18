@@ -23,7 +23,7 @@ jobs:
         git submodule update --init --recursive
     
     - name: Run build script
-      run: .\build.sh
+      run: ./build.sh
         
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
