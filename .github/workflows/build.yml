@@ -24,13 +24,18 @@ jobs:
     
     - name: Run build script
       run: ./build.sh
+
+    - run:   |
+         upload_url=$(curl -sL https://api.github.com/repos/actions/checkout/releases/latest | jq -r '.upload_url')
+         echo UPLOAD_URL=$upload_url >> $GITHUB_ENV
+      shell: bash
         
     - name: Upload Release Asset
       uses: actions/upload-release-asset@v1
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        upload_url: ${{ env.UPLOAD_URL }}
         asset_path: .\out\tlf
-        asset_name: tlf
+        asset_name: linux-tlf
         asset_content_type: application/octet-stream
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
