@@ -30,8 +30,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        upload_url=$(curl -sSL -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/{owner}/{repo}/releases/latest | jq -r .upload_url)
-        echo "UPLOAD_URL=$upload_url" >> $GITHUB_ENV
+        upload_url=$(curl -sSL -H "Authorization: token $GITHUB_TOKEN" https://api.github.com/repos/Mariuspersen/twitter_link_fix/releases/latest | jq -r .upload_url)
+        echo "UPLOAD_URL=$upload_url" >> "$GITHUB_ENV"
         echo "Upload URL fetched: $upload_url"
   
     - name: Upload Release Asset
